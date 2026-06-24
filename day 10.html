@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Landing Page</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter, sans-serif;
+}
+
+html,body{
+    overflow-x:hidden;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at top left,#3a3a3a,#181818);
+    padding:20px;
+}
+
+/* Animations */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    max-width:1200px;
+    background:#ececec;
+    border-radius:35px;
+    padding:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    animation:fadeIn 1s ease;
+}
+
+/* Navbar */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.left-nav{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:3px solid #111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.5s;
+}
+
+.logo:hover{
+    transform:rotate(360deg);
+}
+
+.menu{
+    display:flex;
+    gap:25px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#222;
+    font-size:15px;
+    position:relative;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:#8a2be2;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:2px;
+    background:#8a2be2;
+    transition:.3s;
+}
+
+.menu a:hover::after{
+    width:100%;
+}
+
+.auth{
+    display:flex;
+    gap:10px;
+}
+
+.auth button{
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.auth button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+.login{
+    background:#ddd;
+}
+
+.signup{
+    color:white;
+    background:linear-gradient(135deg,#8a2be2,#ff4fd8);
+}
+
+/* Grid Layout */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:18px;
+}
+
+/* Hero Card */
+
+.hero-card{
+    background:linear-gradient(135deg,#111,#222,#444);
+    color:white;
+    border-radius:25px;
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+    min-height:420px;
+    transition:.4s;
+}
+
+.hero-card:hover{
+    transform:translateY(-8px);
+}
+
+.hero-card small{
+    color:#aaa;
+}
+
+.hero-card h1{
+    font-size:clamp(2rem,5vw,4rem);
+    line-height:1.1;
+    margin-top:15px;
+}
+
+.select{
+    display:inline-block;
+    margin-top:35px;
+    background:white;
+    color:black;
+    padding:14px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.select:hover{
+    transform:scale(1.05);
+}
+
+.product{
+    position:absolute;
+    right:40px;
+    bottom:40px;
+    animation:float 3s ease-in-out infinite;
+}
+
+.cube{
+    width:120px;
+    height:120px;
+    background:#333;
+    position:relative;
+}
+
+.cube::before{
+    content:'';
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:black;
+    position:absolute;
+    top:-25px;
+    left:30px;
+}
+
+/* Right Section */
+
+.right{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* Blog Card */
+
+.blog{
+    background:#f7f7f7;
+    border-radius:25px;
+    padding:25px;
+    min-height:200px;
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.blog:hover{
+    transform:translateY(-8px);
+}
+
+.blog h2{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    font-size:clamp(1.8rem,4vw,3rem);
+}
+
+.bubbles{
+    position:absolute;
+    right:15px;
+    top:15px;
+}
+
+.ball1,.ball2,.ball3{
+    border-radius:50%;
+    background:black;
+    filter:blur(2px);
+}
+
+.ball1{
+    width:80px;
+    height:80px;
+    margin-left:40px;
+}
+
+.ball2{
+    width:120px;
+    height:120px;
+    opacity:.7;
+}
+
+.ball3{
+    width:160px;
+    height:160px;
+    opacity:.4;
+}
+
+/* Bottom Cards */
+
+.bottom{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.small-card{
+    border-radius:25px;
+    padding:25px;
+    min-height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:.4s;
+}
+
+.small-card:hover{
+    transform:translateY(-8px);
+}
+
+.about{
+    background:linear-gradient(135deg,#9d4edd,#c77dff);
+    color:white;
+}
+
+.contact{
+    background:linear-gradient(135deg,#b8ff00,#ebff8a);
+    color:#111;
+}
+
+.small-card h3{
+    font-size:clamp(1.5rem,4vw,2.8rem);
+}
+
+.arrow{
+    align-self:flex-end;
+    font-size:26px;
+}
+
+/* Tablet */
+
+@media(max-width:900px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        min-height:350px;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .left-nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .auth{
+        justify-content:center;
+        width:100%;
+    }
+
+    .hero-card{
+        min-height:auto;
+    }
+
+    .product{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        margin-top:30px;
+        display:flex;
+        justify-content:center;
+    }
+
+    .bottom{
+        grid-template-columns:1fr;
+    }
+}
+
+/* Small Mobile */
+
+@media(max-width:480px){
+
+    .container{
+        padding:18px;
+        border-radius:20px;
+    }
+
+    .menu{
+        gap:15px;
+    }
+
+    .menu a{
+        font-size:13px;
+    }
+
+    .auth button{
+        padding:8px 14px;
+        font-size:12px;
+    }
+
+    .cube{
+        width:90px;
+        height:90px;
+    }
+
+    .cube::before{
+        width:45px;
+        height:45px;
+        left:22px;
+        top:-18px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="navbar">
+
+        <div class="left-nav">
+            <div class="logo">◎</div>
+
+            <ul class="menu">
+                <li><a href="#">Products</a></li>
+                <li><a href="#">App</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="auth">
+            <button class="login">LOG IN</button>
+            <button class="signup">SIGN UP</button>
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="hero-card">
+
+            <small>MORE OFFERS</small>
+
+            <h1>There is<br>something else<br>for you</h1>
+
+            <div class="select">
+                All Products ✈
+            </div>
+
+            <div class="product">
+                <div class="cube"></div>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="blog">
+
+                <small>WORLD OF HEARING TECHNOLOGY</small>
+
+                <div class="bubbles">
+                    <div class="ball1"></div>
+                    <div class="ball2"></div>
+                    <div class="ball3"></div>
+                </div>
+
+                <h2>View Our Blog</h2>
+
+            </div>
+
+            <div class="bottom">
+
+                <div class="small-card about">
+                    <small>DISCOVER OUR HISTORY</small>
+                    <div class="arrow">↗</div>
+                    <h3>About Us</h3>
+                </div>
+
+                <div class="small-card contact">
+                    <small>HAVE SOME QUESTIONS?</small>
+                    <div class="arrow">✈</div>
+                    <h3>Contact Us</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
